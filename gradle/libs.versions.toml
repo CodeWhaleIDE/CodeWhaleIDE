@@ -1,0 +1,149 @@
+[versions]
+
+# Kotlin
+kotlin = "2.1.10"
+kotlinSerialization = "1.8.1"
+
+# Android
+compileSdk = "35"
+targetSdk = "35"
+minSdk = "26"
+versionCode = "1"
+versionName = "1.0.0"
+androidGradlePlugin = "8.9.1"
+androidMaterial = "1.12.0"
+androidDesugarJdkLibs = "2.1.5"
+
+# AndroidX
+androidxCoreKtx = "1.16.0"
+androidxAppcompat = "1.7.0"
+androidxActivity = "1.10.1"
+androidxConstraintLayout = "2.2.1"
+androidxStartupRuntime = "1.2.0"
+androidxBrowser = "1.8.0"
+
+# AndroidX Test
+androidxTestJunitKtx = "1.2.1"
+androidxTestJunit = "1.2.1"
+androidxTestJunit4 = "4.13.2"
+androidxTestEspressoCore = "3.6.1"
+
+# Compose
+androidxComposeBom = "2025.04.00"
+androidxComposeCompiler = "1.5.3"
+androidxComposeMaterial3 = "1.4.0-alpha12"
+androidxComposeMaterial3Adaptive = "1.2.0-alpha03"
+androidxComposeMaterial3AdaptiveNavigationSuite = "1.4.0-alpha12"
+androidxComposeMaterialIconsExtended = "1.7.8"
+androidxComposeAnimation = "1.5.0-beta.1"
+androidxComposeLifecycle = "2.8.7"
+androidxComposeNavigation = "2.8.9"
+androidxComposeConstraintLayout = "1.1.1"
+
+# Compose Accompanist
+androidxComposeAccompanist = "0.37.2"
+
+[libraries]
+
+# Kotlin
+kotlinSerialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinSerialization" }
+kotlinReflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+
+# Android
+androidMaterial = { module = "com.google.android.material:material", version.ref = "androidMaterial" }
+androidDesugarJdkLibs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
+
+# AndroidX
+androidxCoreKtx = { module = "androidx.core:core-ktx", version.ref = "androidxCoreKtx" }
+androidxAppcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidxAppcompat" }
+androidxActivity = { module = "androidx.activity:activity", version.ref = "androidxActivity" }
+androidxConstraintLayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidxConstraintLayout" }
+androidxStartupRuntime = { module = "androidx.startup:startup-runtime", version.ref = "androidxStartupRuntime" }
+androidxBrowser = { module = "androidx.browser:browser", version.ref = "androidxBrowser" }
+
+# AndroidX Test
+androidxTestJunitKtx = { module = "androidx.test.ext:junit-ktx", version.ref = "androidxTestJunitKtx" }
+androidxTestJunit = { module = "androidx.test.ext:junit", version.ref = "androidxTestJunit" }
+androidxTestJunit4 = { module = "junit:junit", version.ref = "androidxTestJunit4" }
+androidxTestEspressoCore = { module = "androidx.test.espresso:espresso-core", version.ref = "androidxTestEspressoCore" }
+
+# Compose
+androidxComposeBom = { module = "androidx.compose:compose-bom", version.ref = "androidxComposeBom" }
+androidxComposeFoundation = { module = "androidx.compose.foundation:foundation" }
+androidxComposeRuntime = { module = "androidx.compose.runtime:runtime" }
+androidxComposeUi = { module = "androidx.compose.ui:ui" }
+androidxComposeUiTest = { module = "androidx.compose.ui:ui-test-junit4" }
+androidxComposeUiTooling = { module = "androidx.compose.ui:ui-tooling" }
+androidxComposeUiToolingPreview = { module = "androidx.compose.ui:ui-tooling-preview" }
+androidxComposeMaterial = { module = "androidx.compose.material:material" }
+androidxComposeMaterial3 = { module = "androidx.compose.material3:material3", version.ref = "androidxComposeMaterial3" }
+androidxComposeMaterialIconsExtended = { module = "androidx.compose.material:material-icons-extended", version.ref = "androidxComposeMaterialIconsExtended" }
+androidxComposeMaterialAdaptive = { module = "androidx.compose.material3.adaptive:adaptive", version.ref = "androidxComposeMaterial3Adaptive" }
+androidxComposeMaterialAdaptiveLayout = { module = "androidx.compose.material3.adaptive:adaptive-layout", version.ref = "androidxComposeMaterial3Adaptive" }
+androidxComposeMaterialAdaptiveNavigation = { module = "androidx.compose.material3.adaptive:adaptive-navigation", version.ref = "androidxComposeMaterial3Adaptive" }
+androidxComposeMaterialAdaptiveNavigationSuite = { module = "androidx.compose.material3:material3-adaptive-navigation-suite", version.ref = "androidxComposeMaterial3AdaptiveNavigationSuite" }
+androidxComposeAnimation = { module = "androidx.compose.animation:animation" }
+androidxLifecycleRuntimeCompose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxComposeLifecycle" }
+androidxLifecycleViewModelCompose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidxComposeLifecycle" }
+androidxNavigationCompose = { module = "androidx.navigation:navigation-compose", version.ref = "androidxComposeNavigation" }
+androidxComposeConstraintLayout = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "androidxComposeConstraintLayout" }
+
+[plugins]
+
+# Kotlin
+kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
+# Android
+androidApplication = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+androidLibrary = { id = "com.android.library", version.ref = "androidGradlePlugin" }
+androidTest = { id = "com.android.test", version.ref = "androidGradlePlugin" }
+
+# Compose
+kotlinPluginCompose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+
+[bundles]
+
+# Kotlin
+kotlin = [
+    "kotlinSerialization"
+]
+
+# AndroidX
+androidx = [
+    "androidMaterial",
+    "androidxCoreKtx",
+    "androidxAppcompat",
+    "androidxActivity",
+    "androidxConstraintLayout",
+    "androidxStartupRuntime",
+    "androidxBrowser"
+]
+
+# AndroidX Test
+androidxTest = [
+    "androidxTestJunitKtx",
+    "androidxTestJunit",
+    "androidxTestJunit4",
+    "androidxTestEspressoCore"
+]
+
+# Compose
+compose = [
+    "androidxComposeFoundation",
+    "androidxComposeUi",
+    "androidxComposeUiTooling",
+    "androidxComposeMaterial",
+    "androidxComposeMaterial3",
+    "androidxComposeMaterialIconsExtended",
+    "androidxComposeMaterialAdaptive",
+    "androidxComposeMaterialAdaptiveLayout",
+    "androidxComposeMaterialAdaptiveNavigation",
+    "androidxComposeMaterialAdaptiveNavigationSuite",
+    "androidxComposeAnimation",
+    "androidxLifecycleRuntimeCompose",
+    "androidxLifecycleViewModelCompose",
+    "androidxNavigationCompose",
+    "androidxComposeConstraintLayout"
+]
