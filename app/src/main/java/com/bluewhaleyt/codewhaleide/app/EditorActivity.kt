@@ -15,10 +15,13 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalView
+import com.bluewhaleyt.codewhaleide.app.sdk.DefaultPluginContext
 import com.bluewhaleyt.codewhaleide.common.extension.hideSystemBars
+import com.bluewhaleyt.codewhaleide.sdk.LocalPluginContext
 
 class EditorActivity : ComponentActivity() {
 
@@ -40,15 +43,17 @@ class EditorActivity : ComponentActivity() {
                 }
             }
 
-            MaterialTheme(colorScheme) {
-                if (!view.isInEditMode) {
-                    SideEffect {
-                        window.hideSystemBars()
+            CompositionLocalProvider(LocalPluginContext provides DefaultPluginContext(this)) {
+                MaterialTheme(colorScheme) {
+                    if (!view.isInEditMode) {
+                        SideEffect {
+                            window.hideSystemBars()
+                        }
                     }
-                }
-                Surface(modifier = Modifier.fillMaxSize()) {
-                    Column(modifier = Modifier.imePadding()) {
-                        EditorScreen()
+                    Surface(modifier = Modifier.fillMaxSize()) {
+                        Column(modifier = Modifier.imePadding()) {
+                            EditorScreen()
+                        }
                     }
                 }
             }

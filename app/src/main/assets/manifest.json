@@ -1,0 +1,14 @@
+{
+  "actions": [
+    {
+      "id": "action.toast",
+      "className": "com.bluewhaleyt.codewhaleide.app.action.ToastAction",
+      "label": "Show Toast"
+    },
+    {
+      "id": "action.snackbar",
+      "className": "com.bluewhaleyt.codewhaleide.app.action.SnackbarAction",
+      "label": "Show Snackbar"
+    }
+  ]
+}
