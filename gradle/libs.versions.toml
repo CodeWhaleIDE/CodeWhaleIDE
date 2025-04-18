@@ -75,7 +75,6 @@ androidxComposeUi = { module = "androidx.compose.ui:ui" }
 androidxComposeUiTest = { module = "androidx.compose.ui:ui-test-junit4" }
 androidxComposeUiTooling = { module = "androidx.compose.ui:ui-tooling" }
 androidxComposeUiToolingPreview = { module = "androidx.compose.ui:ui-tooling-preview" }
-androidxComposeMaterial = { module = "androidx.compose.material:material" }
 androidxComposeMaterial3 = { module = "androidx.compose.material3:material3", version.ref = "androidxComposeMaterial3" }
 androidxComposeMaterialIconsExtended = { module = "androidx.compose.material:material-icons-extended", version.ref = "androidxComposeMaterialIconsExtended" }
 androidxComposeMaterialAdaptive = { module = "androidx.compose.material3.adaptive:adaptive", version.ref = "androidxComposeMaterial3Adaptive" }
@@ -134,7 +133,6 @@ compose = [
     "androidxComposeFoundation",
     "androidxComposeUi",
     "androidxComposeUiTooling",
-    "androidxComposeMaterial",
     "androidxComposeMaterial3",
     "androidxComposeMaterialIconsExtended",
     "androidxComposeMaterialAdaptive",
