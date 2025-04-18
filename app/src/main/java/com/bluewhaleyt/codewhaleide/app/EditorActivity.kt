@@ -43,7 +43,13 @@ class EditorActivity : ComponentActivity() {
                 }
             }
 
-            CompositionLocalProvider(LocalPluginContext provides DefaultPluginContext(this)) {
+            CompositionLocalProvider(
+                LocalPluginContext provides DefaultPluginContext(
+                    context = this,
+                    view = view,
+                    colorScheme = colorScheme
+                )
+            ) {
                 MaterialTheme(colorScheme) {
                     if (!view.isInEditMode) {
                         SideEffect {

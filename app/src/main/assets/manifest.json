@@ -9,6 +9,21 @@
       "id": "action.snackbar",
       "className": "com.bluewhaleyt.codewhaleide.app.action.SnackbarAction",
       "label": "Show Snackbar"
+    },
+    {
+      "id": "action.quick.pick",
+      "className": "com.bluewhaleyt.codewhaleide.app.action.QuickPickAction",
+      "label": "Show Quick Pick"
+    },
+    {
+      "id": "action.launch.website",
+      "className": "com.bluewhaleyt.codewhaleide.app.action.LaunchWebsiteAction",
+      "label": "Launch Website"
+    },
+    {
+      "id": "action.list.manifest.permissions",
+      "className": "com.bluewhaleyt.codewhaleide.app.action.ListManifestPermissionsAction",
+      "label": "List Manifest Permissions"
     }
   ]
 }

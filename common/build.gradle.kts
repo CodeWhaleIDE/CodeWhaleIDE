@@ -13,4 +13,6 @@ dependencies {
     implementation(libs.bundles.kotlin)
     implementation(libs.bundles.androidx)
     implementation(libs.bundles.compose)
+
+    implementation(project(":sdk"))
 }
