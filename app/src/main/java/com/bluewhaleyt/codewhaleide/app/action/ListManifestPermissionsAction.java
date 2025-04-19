@@ -4,9 +4,12 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import com.bluewhaleyt.codewhaleide.sdk.Action;
 import com.bluewhaleyt.codewhaleide.sdk.PluginContext;
+import com.bluewhaleyt.codewhaleide.sdk.ui.Icon;
 import com.bluewhaleyt.codewhaleide.sdk.ui.quickpick.QuickPick;
 import com.bluewhaleyt.codewhaleide.sdk.ui.quickpick.QuickPickItem;
 import com.bluewhaleyt.codewhaleide.sdk.ui.quickpick.QuickPickListener;
@@ -25,7 +28,9 @@ public class ListManifestPermissionsAction implements Action {
 
         for (int i = 0; i < rawPermissions.size(); i++) {
             PermissionItem item = new PermissionItem();
+            item.setContext(context);
             item.setLabel(rawPermissions.get(i));
+            item.setIcon(android.R.drawable.ic_input_get);
             permissions.add(item);
         }
 
@@ -61,7 +66,14 @@ public class ListManifestPermissionsAction implements Action {
 
     public static class PermissionItem implements QuickPickItem {
 
+        private Context mContext;
+
         private String mLabel;
+        private int iconResId;
+
+        public void setContext(Context context) {
+            this.mContext = context;
+        }
 
         public void setLabel(String label) {
             this.mLabel = label;
@@ -72,6 +84,19 @@ public class ListManifestPermissionsAction implements Action {
         public String getLabel() {
             return mLabel;
         }
+
+        public void setIcon(int resId) {
+            this.iconResId = resId;
+        }
+
+        @Nullable
+        @Override
+        public Icon getIcon() {
+            return new Icon.Drawable(
+                    ContextCompat.getDrawable(mContext, iconResId), null
+            );
+        }
+
     }
 
 }

@@ -35,6 +35,7 @@ import com.bluewhaleyt.codewhaleide.common.R
 import com.bluewhaleyt.codewhaleide.common.extension.hideSystemBars
 import com.bluewhaleyt.codewhaleide.common.extension.ui.clickableNoRipple
 import com.bluewhaleyt.codewhaleide.common.ui.highlighter
+import com.bluewhaleyt.codewhaleide.sdk.ui.Icon
 import com.bluewhaleyt.codewhaleide.sdk.ui.quickpick.QuickPick
 import com.bluewhaleyt.codewhaleide.sdk.ui.quickpick.QuickPickItem
 
@@ -122,7 +123,8 @@ fun <T : QuickPickItem> QuickPick(
                                     )
                                 )
                             } else { Text(it) }
-                        }}
+                        }},
+                        leadingIcon = item.icon?.let { { Icon(it) } }
                     )
                 }
             }
@@ -176,7 +178,7 @@ private fun QuickPick(
                     .fillMaxWidth()
                     .padding(start = 16.dp, end = 16.dp, bottom = 16.dp),
                 colors = CardDefaults.elevatedCardColors(
-                    containerColor = MaterialTheme.colorScheme.surfaceContainer
+                    containerColor = MaterialTheme.colorScheme.surfaceContainerLow
                 ),
                 shape = MaterialTheme.shapes.medium.copy(
                     topStart = CornerSize(0.dp),

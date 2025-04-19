@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
@@ -25,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import com.bluewhaleyt.codewhaleide.common.extension.ui.maxLinesHeight
 import com.bluewhaleyt.codewhaleide.common.extension.ui.onPrimaryAlt
 import com.bluewhaleyt.codewhaleide.common.extension.ui.primaryAlt
+import com.bluewhaleyt.codewhaleide.sdk.ui.Icon
 
 @Composable
 internal fun QuickPickItem(
@@ -34,7 +36,8 @@ internal fun QuickPickItem(
     modifier: Modifier = Modifier,
     onReselected: () -> Unit,
     description: @Composable (() -> Unit)? = null,
-    detail: @Composable (() -> Unit)? = null
+    detail: @Composable (() -> Unit)? = null,
+    leadingIcon: @Composable (() -> Unit)? = null
 ) {
     val containerColorSelected =
         if (isSystemInDarkTheme()) MaterialTheme.colorScheme.primaryAlt.copy(0.38f)
@@ -67,6 +70,7 @@ internal fun QuickPickItem(
                 it()
             }
         } },
+        leadingIcon = leadingIcon,
         onClick = {
             if (selected) onReselected() else onSelected()
         }
@@ -79,7 +83,8 @@ private fun QuickPickItem(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     description: @Composable (() -> Unit)? = null,
-    detail: @Composable (() -> Unit)? = null
+    detail: @Composable (() -> Unit)? = null,
+    leadingIcon: @Composable (() -> Unit)? = null
 ) {
     val contentAltStyle = MaterialTheme.typography.bodySmall
 
@@ -87,26 +92,36 @@ private fun QuickPickItem(
         modifier = modifier,
         onClick = onClick
     ) {
-        Column(modifier = Modifier.weight(1f)) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                QuickPickItemTextContainer(maxLines = 1) {
-                    label()
-                }
-                description?.let {
-                    Spacer(modifier = Modifier.width(8.dp))
-                    CompositionLocalProvider(LocalTextStyle provides contentAltStyle,) {
-                        QuickPickItemTextContainer(
-                            modifier = Modifier.fillMaxWidth(),
-                            style = contentAltStyle,
-                            maxLines = 1
-                        ) { it() }
-                    }
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            leadingIcon?.let {
+                Box(modifier = Modifier.size(24.dp)) {
+                    it()
                 }
             }
-            detail?.let {
-                CompositionLocalProvider(LocalTextStyle provides contentAltStyle) {
-                    QuickPickItemTextContainer(maxLines = 3, style = contentAltStyle) {
-                        it()
+            Column(modifier = Modifier.weight(1f)) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    QuickPickItemTextContainer(maxLines = 1) {
+                        label()
+                    }
+                    description?.let {
+                        Spacer(modifier = Modifier.width(8.dp))
+                        CompositionLocalProvider(LocalTextStyle provides contentAltStyle,) {
+                            QuickPickItemTextContainer(
+                                modifier = Modifier.fillMaxWidth(),
+                                style = contentAltStyle,
+                                maxLines = 1
+                            ) { it() }
+                        }
+                    }
+                }
+                detail?.let {
+                    CompositionLocalProvider(LocalTextStyle provides contentAltStyle) {
+                        QuickPickItemTextContainer(maxLines = 3, style = contentAltStyle) {
+                            it()
+                        }
                     }
                 }
             }

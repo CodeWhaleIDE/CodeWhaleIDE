@@ -1,8 +1,11 @@
 package com.bluewhaleyt.codewhaleide.app.action
 
 import android.widget.Toast
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
 import com.bluewhaleyt.codewhaleide.sdk.Action
 import com.bluewhaleyt.codewhaleide.sdk.PluginContext
+import com.bluewhaleyt.codewhaleide.sdk.ui.Icon
 import com.bluewhaleyt.codewhaleide.sdk.ui.quickpick.QuickPick
 import com.bluewhaleyt.codewhaleide.sdk.ui.quickpick.QuickPickItem
 import com.bluewhaleyt.codewhaleide.sdk.ui.quickpick.QuickPickListener
@@ -39,6 +42,9 @@ class QuickPickAction : Action {
     private data class CustomItem(
         override val label: String,
         override val detail: String?
-    ) : QuickPickItem
+    ) : QuickPickItem {
+        override val icon: Icon
+            get() = Icon.Vector(Icons.Default.Info, null)
+    }
 
 }
