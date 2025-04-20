@@ -73,7 +73,8 @@ fun <T : ListPanelItem> ListPanel(
                         listener.onValueChange(panel, it)
                     },
                     onDone = { listener.onConfirm(panel, value, selectedIndex, items[selectedIndex]) },
-                    placeholder = options.placeholder?.let { { Text(it) } }
+                    placeholder = options.placeholder?.let { { Text(it) } },
+                    showDone = value.isNotBlank() && items.isNotEmpty()
                 )
             }
             LazyColumn {
@@ -120,7 +121,7 @@ fun <T : ListPanelItem> ListPanel(
                                     )
                                 )
                             } else { Text(it) }
-                        }},
+                        }}
                     )
                 }
             }

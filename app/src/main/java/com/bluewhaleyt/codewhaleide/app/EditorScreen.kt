@@ -1,12 +1,14 @@
 package com.bluewhaleyt.codewhaleide.app
 
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.safeContentPadding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.material3.ListItem
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -14,6 +16,10 @@ import androidx.compose.ui.Modifier
 import com.bluewhaleyt.codewhaleide.app.sdk.ApplicationManifest
 import com.bluewhaleyt.codewhaleide.app.sdk.LocalPluginContext
 import com.bluewhaleyt.codewhaleide.sdk.Manifest
+import com.bluewhaleyt.codewhaleide.sdk.ui.panel.list.ListPanel
+import com.bluewhaleyt.codewhaleide.sdk.ui.panel.list.ListPanelListener
+import com.bluewhaleyt.codewhaleide.sdk.ui.panel.list.ListPanelOptions
+import com.bluewhaleyt.codewhaleide.sdk.ui.panel.list.SimpleListPanelItem
 
 @Composable
 fun EditorScreen() {
@@ -22,22 +28,47 @@ fun EditorScreen() {
         context.assets.open("manifest.json")
     )
 
-    Column(
-        modifier = Modifier.fillMaxSize().safeContentPadding(),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text("Hello, CodeWhaleIDE!")
-
-        LazyColumn {
-            itemsIndexed(
-                items = manifest.getAvailableActions(),
-                key = { i, _ -> i }
-            ) { index, action ->
-                ListItem(
-                    headlineContent = { Text(action.label) },
-                    modifier = Modifier.clickable { action.asAction().onPerform(context) }
-                )
+    EditorContainer(
+        menu = {
+            IconButton(
+                onClick = {
+                    context.showListPanel(
+                        items = manifest.getAvailableActions().map { SimpleListPanelItem(
+                            label = it.label,
+                            detail = it.description,
+                            extraData = it
+                        ) },
+                        options = ListPanelOptions(
+                            title = "Actions",
+                            placeholder = "Search actions..."
+                        ),
+                        listener = object : ListPanelListener<SimpleListPanelItem> {
+                            override fun onItemSelected(
+                                panel: ListPanel<SimpleListPanelItem>,
+                                value: String,
+                                index: Int,
+                                item: SimpleListPanelItem
+                            ) {
+                                val action = item.extraData as Manifest.Action
+                                action.asAction().onPerform(context)
+                                panel.dismiss()
+                            }
+                        }
+                    )
+                }
+            ) {
+                Icon(Icons.Default.Menu, "Menu")
             }
+        },
+        navigationBar = {},
+        statusBar = {}
+    ) {
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text("Hello, CodeWhaleIDE!")
         }
     }
 }

@@ -11,6 +11,6 @@ data class ListPanelOptions @JvmOverloads constructor(
     var defaultValue: String? = null,
     var showInput: Boolean = true,
     var matchOnLabel: Boolean = true,
-    var matchOnDescription: Boolean = true,
-    var matchOnDetail: Boolean = true
+    var matchOnDescription: Boolean = false,
+    var matchOnDetail: Boolean = false
 ) : PanelOptions

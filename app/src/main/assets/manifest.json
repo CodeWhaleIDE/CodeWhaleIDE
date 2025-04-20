@@ -3,12 +3,14 @@
     {
       "id": "action.java.test",
       "className": "com.bluewhaleyt.codewhaleide.app.action.JavaTestAction",
-      "label": "Java Test"
+      "label": "Java Test",
+      "description": "A test action written in Java"
     },
     {
       "id": "action.kotlin.test",
       "className": "com.bluewhaleyt.codewhaleide.app.action.KotlinTestAction",
-      "label": "Kotlin Test"
+      "label": "Kotlin Test",
+      "description": "A test action written in Kotlin"
     }
   ]
 }

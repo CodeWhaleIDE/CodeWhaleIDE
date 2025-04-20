@@ -61,7 +61,8 @@ fun InputPanel(
                     listener.onValueChange(panel, it)
                 },
                 onDone = { listener.onConfirm(panel, value) },
-                placeholder = options.placeholder?.let { { Text(it) } }
+                placeholder = options.placeholder?.let { { Text(it) } },
+                showDone = value.isNotBlank()
             )
         }
     }
@@ -73,7 +74,8 @@ internal fun InputPanelInput(
     onValueChange: (String) -> Unit,
     onDone: () -> Unit,
     placeholder: @Composable (() -> Unit)?,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    showDone: Boolean = true
 ) {
     var focused by remember { mutableStateOf(false) }
     val focusRequester = remember { FocusRequester() }
@@ -135,8 +137,10 @@ internal fun InputPanelInput(
                             LocalMinimumInteractiveComponentSize provides Dp.Unspecified,
                             LocalContentColor provides MaterialTheme.colorScheme.onSurface.copy(0.38f)
                         ) {
-                            IconButton(onClick = onDone) {
-                                Icon(Icons.Default.Check, "Confirm", modifier = Modifier.size(16.dp))
+                            AnimatedVisibility(showDone) {
+                                IconButton(onClick = onDone) {
+                                    Icon(Icons.Default.Check, "Confirm", modifier = Modifier.size(16.dp))
+                                }
                             }
                             IconButton(onClick = { onValueChange("") }) {
                                 Icon(Icons.Default.Clear, "Clear", modifier = Modifier.size(16.dp))
