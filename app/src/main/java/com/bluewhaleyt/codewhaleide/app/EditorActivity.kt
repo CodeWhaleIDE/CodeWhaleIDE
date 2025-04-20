@@ -20,8 +20,8 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalView
 import com.bluewhaleyt.codewhaleide.app.sdk.DefaultPluginContext
+import com.bluewhaleyt.codewhaleide.app.sdk.LocalPluginContext
 import com.bluewhaleyt.codewhaleide.common.extension.hideSystemBars
-import com.bluewhaleyt.codewhaleide.sdk.LocalPluginContext
 
 class EditorActivity : ComponentActivity() {
 

@@ -1,6 +1,3 @@
-@file:JvmMultifileClass
-@file:JvmName("WindowUtilsKt")
-
 package com.bluewhaleyt.codewhaleide.common.extension
 
 import android.view.View

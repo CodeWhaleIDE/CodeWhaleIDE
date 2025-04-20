@@ -1,6 +1,3 @@
-@file:JvmMultifileClass
-@file:JvmName("ContextUtilsKt")
-
 package com.bluewhaleyt.codewhaleide.common.extension
 
 import android.content.Context

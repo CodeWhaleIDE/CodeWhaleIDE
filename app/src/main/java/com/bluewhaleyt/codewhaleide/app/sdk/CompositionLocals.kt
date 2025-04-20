@@ -1,9 +1,8 @@
-package com.bluewhaleyt.codewhaleide.sdk
+package com.bluewhaleyt.codewhaleide.app.sdk
 
 import androidx.compose.runtime.staticCompositionLocalOf
-
-fun noLocalProvidedFor(name: String): Nothing =
-    error("CompositionLocal $name not present")
+import com.bluewhaleyt.codewhaleide.common.noLocalProvidedFor
+import com.bluewhaleyt.codewhaleide.sdk.PluginContext
 
 val LocalPluginContext = staticCompositionLocalOf<PluginContext> {
     noLocalProvidedFor("LocalPluginContext")

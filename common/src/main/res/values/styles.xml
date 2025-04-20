@@ -18,8 +18,8 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
-    <style name="CodeWhaleIDE_Component_Quick_Pick_Animation">
-        <item name="android:windowEnterAnimation">@anim/quick_pick_top_enter</item>
-        <item name="android:windowExitAnimation">@anim/quick_pick_top_exit</item>
+    <style name="CodeWhaleIDE_Panel_Animation">
+        <item name="android:windowEnterAnimation">@anim/panel_op_enter</item>
+        <item name="android:windowExitAnimation">@anim/panel_top_exit</item>
     </style>
 </resources>
