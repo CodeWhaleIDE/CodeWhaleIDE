@@ -49,6 +49,8 @@ dependencies {
     implementation("io.github.Rosemoe.sora-editor:editor")
     implementation("io.github.Rosemoe.sora-editor:language-textmate")
 
+    implementation("androidx.datastore:datastore-preferences:1.1.4")
+
     implementation(project(":common"))
     implementation(project(":sdk"))
 }

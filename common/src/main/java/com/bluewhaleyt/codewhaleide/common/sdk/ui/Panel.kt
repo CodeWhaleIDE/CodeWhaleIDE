@@ -17,7 +17,6 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.platform.compositionContext
 import com.bluewhaleyt.codewhaleide.common.ui.Panel
-import com.bluewhaleyt.codewhaleide.common.ui.PanelProperties
 import com.bluewhaleyt.codewhaleide.sdk.ui.panel.Panel
 
 @Composable
@@ -31,10 +30,6 @@ internal fun <T : Panel> Panel(
         Panel(
             modifier = modifier,
             onDismissRequest = onDismissRequest,
-            properties = PanelProperties(
-                dismissOnBackPress = options.dismissOnBackPress,
-                dismissOnClickOutside = options.dismissOnClickOutside
-            ),
             title = options.title?.let { { Text(it) } }
         ) {
             content()
@@ -43,7 +38,7 @@ internal fun <T : Panel> Panel(
 }
 
 fun <T : Panel> createPanel(
-    component: T,
+    panel: T,
     view: View,
     colorScheme: ColorScheme,
     modifier: Modifier = Modifier,
@@ -53,7 +48,7 @@ fun <T : Panel> createPanel(
         setParentCompositionContext(compositionContext)
         setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnDetachedFromWindowOrReleasedFromPool)
         setContent {
-            val visible by remember { derivedStateOf { component.visible } }
+            val visible by remember { derivedStateOf { panel.visible } }
             if (visible) {
                 MaterialTheme(colorScheme) {
                     Surface(modifier) {

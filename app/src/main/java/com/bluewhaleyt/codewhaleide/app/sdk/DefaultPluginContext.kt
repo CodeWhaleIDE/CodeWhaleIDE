@@ -3,6 +3,7 @@ package com.bluewhaleyt.codewhaleide.app.sdk
 import com.bluewhaleyt.codewhaleide.common.sdk.ui.InputPanel
 import com.bluewhaleyt.codewhaleide.common.sdk.ui.ListPanel
 import com.bluewhaleyt.codewhaleide.common.sdk.ui.createPanel
+import com.bluewhaleyt.codewhaleide.sdk.Manifest
 import com.bluewhaleyt.codewhaleide.sdk.PluginContext
 import com.bluewhaleyt.codewhaleide.sdk.ui.panel.input.InputPanel
 import com.bluewhaleyt.codewhaleide.sdk.ui.panel.input.InputPanelListener
@@ -15,6 +16,8 @@ import com.bluewhaleyt.codewhaleide.sdk.ui.panel.list.ListPanelOptions
 class DefaultPluginContext(
     override val data: Data
 ) : PluginContext(data) {
+
+    override fun getManifest() = data.manifest
 
     override fun getWorkspace() = data.workspace
 

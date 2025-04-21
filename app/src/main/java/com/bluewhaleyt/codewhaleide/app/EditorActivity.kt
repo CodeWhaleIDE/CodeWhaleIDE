@@ -1,5 +1,6 @@
 package com.bluewhaleyt.codewhaleide.app
 
+import android.graphics.Typeface
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -19,14 +20,17 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalView
+import com.bluewhaleyt.codewhaleide.app.sdk.ApplicationManifest
 import com.bluewhaleyt.codewhaleide.app.sdk.DefaultEditor
 import com.bluewhaleyt.codewhaleide.app.sdk.DefaultPluginContext
 import com.bluewhaleyt.codewhaleide.app.sdk.DefaultWorkspace
 import com.bluewhaleyt.codewhaleide.app.sdk.LocalCodeEditor
 import com.bluewhaleyt.codewhaleide.app.sdk.LocalPluginContext
 import com.bluewhaleyt.codewhaleide.common.extension.hideSystemBars
+import com.bluewhaleyt.codewhaleide.sdk.Manifest
 import com.bluewhaleyt.codewhaleide.sdk.PluginContext
 import io.github.rosemoe.sora.widget.CodeEditor
+import io.github.rosemoe.sora.widget.schemes.SchemeDarcula
 
 class EditorActivity : ComponentActivity() {
 
@@ -48,7 +52,16 @@ class EditorActivity : ComponentActivity() {
                 }
             }
 
-            val editor = CodeEditor(this)
+            val manifest = Manifest.fromInputStream<ApplicationManifest>(
+                assets.open("manifest.json")
+            )
+
+            val editor = CodeEditor(this).apply {
+                this.colorScheme = SchemeDarcula()
+                val typeface = Typeface.createFromAsset(assets, "font/Iosevka-Regular.ttc")
+                typefaceText = typeface
+                typefaceLineNumber = typeface
+            }
 
             CompositionLocalProvider(
                 LocalPluginContext provides DefaultPluginContext(
@@ -56,6 +69,7 @@ class EditorActivity : ComponentActivity() {
                         context = this,
                         view = view,
                         colorScheme = colorScheme,
+                        manifest = manifest,
                         workspace = DefaultWorkspace(),
                         editor = DefaultEditor(editor)
                     )

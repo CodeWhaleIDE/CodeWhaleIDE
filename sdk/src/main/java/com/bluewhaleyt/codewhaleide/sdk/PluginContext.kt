@@ -37,6 +37,7 @@ abstract class PluginContext(
         val context: Context,
         val view: View,
         val colorScheme: ColorScheme,
+        val manifest: Manifest,
         val workspace: Workspace,
         val editor: Editor
     )

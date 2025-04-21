@@ -135,17 +135,17 @@ internal fun InputPanelInput(
                     }
                     innerTextField()
                 }
-                AnimatedVisibility(value.isNotEmpty()) {
-                    Row {
-                        CompositionLocalProvider(
-                            LocalMinimumInteractiveComponentSize provides Dp.Unspecified,
-                            LocalContentColor provides MaterialTheme.colorScheme.onSurface.copy(0.38f)
-                        ) {
-                            AnimatedVisibility(showDone) {
-                                IconButton(onClick = onDone) {
-                                    Icon(Icons.Default.Check, "Confirm", modifier = Modifier.size(16.dp))
-                                }
+                Row {
+                    CompositionLocalProvider(
+                        LocalMinimumInteractiveComponentSize provides Dp.Unspecified,
+                        LocalContentColor provides MaterialTheme.colorScheme.onSurface.copy(0.38f)
+                    ) {
+                        AnimatedVisibility(showDone) {
+                            IconButton(onClick = onDone) {
+                                Icon(Icons.Default.Check, "Confirm", modifier = Modifier.size(16.dp))
                             }
+                        }
+                        AnimatedVisibility(value.isNotEmpty()) {
                             IconButton(onClick = { onValueChange("") }) {
                                 Icon(Icons.Default.Clear, "Clear", modifier = Modifier.size(16.dp))
                             }

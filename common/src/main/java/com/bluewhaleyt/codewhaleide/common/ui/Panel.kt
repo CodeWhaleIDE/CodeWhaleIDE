@@ -20,6 +20,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheetDefaults.properties
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
@@ -40,13 +41,11 @@ internal fun Panel(
     onDismissRequest: () -> Unit,
     title: @Composable (() -> Unit)?,
     modifier: Modifier = Modifier,
-    properties: PanelProperties = PanelProperties(),
     content: @Composable ColumnScope.() -> Unit
 ) {
     Panel(
         modifier = modifier,
         onDismissRequest = onDismissRequest,
-        properties = properties
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -64,7 +63,6 @@ internal fun Panel(
 private fun Panel(
     onDismissRequest: () -> Unit,
     modifier: Modifier = Modifier,
-    properties: PanelProperties = PanelProperties(),
     content: @Composable () -> Unit
 ) {
     val configuration = LocalConfiguration.current
@@ -75,8 +73,7 @@ private fun Panel(
 
     BasicPanel(
         modifier = modifier,
-        onDismissRequest = onDismissRequest,
-        properties = properties
+        onDismissRequest = onDismissRequest
     ) {
         ElevatedCard(
             modifier = Modifier
@@ -102,13 +99,9 @@ private fun Panel(
 private fun BasicPanel(
     onDismissRequest: () -> Unit,
     modifier: Modifier = Modifier,
-    properties: PanelProperties = PanelProperties(),
     content: @Composable () -> Unit
 ) {
     val newProperties = DialogProperties(
-        dismissOnBackPress = properties.dismissOnBackPress,
-        dismissOnClickOutside = properties.dismissOnClickOutside,
-        securePolicy = properties.securePolicy,
         usePlatformDefaultWidth = false,
         decorFitsSystemWindows = false
     )
@@ -123,20 +116,13 @@ private fun BasicPanel(
             window.apply {
                 setGravity(Gravity.TOP)
                 setWindowAnimations(R.style.CodeWhaleIDE_Panel_Animation)
-                if (!properties.dismissOnBackPress || !properties.dismissOnClickOutside) {
-                    setDimAmount(0f)
-                }
                 hideSystemBars()
             }
         }
         Box(
             modifier = Modifier
                 .fillMaxHeight()
-                .clickableNoRipple {
-                    if (properties.dismissOnClickOutside) {
-                        onDismissRequest()
-                    }
-                }
+                .clickableNoRipple { onDismissRequest() }
                 .imePadding()
         ) {
             content()

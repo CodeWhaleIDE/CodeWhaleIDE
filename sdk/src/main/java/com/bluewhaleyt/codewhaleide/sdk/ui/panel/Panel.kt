@@ -1,25 +1,7 @@
 package com.bluewhaleyt.codewhaleide.sdk.ui.panel
 
-import androidx.annotation.CallSuper
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import com.bluewhaleyt.codewhaleide.sdk.ui.Component
+import com.bluewhaleyt.codewhaleide.sdk.ui.Overlay
 
-abstract class Panel internal constructor(): Component() {
-
-    private val _visible = mutableStateOf(false)
-    val visible by _visible
-
+abstract class Panel internal constructor(): Overlay() {
     abstract val options: PanelOptions
-
-    @CallSuper
-    fun show() {
-        _visible.value = true
-    }
-
-    @CallSuper
-    fun dismiss() {
-        _visible.value = false
-    }
-
 }

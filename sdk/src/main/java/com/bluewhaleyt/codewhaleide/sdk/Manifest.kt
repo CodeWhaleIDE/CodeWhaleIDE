@@ -3,6 +3,7 @@ package com.bluewhaleyt.codewhaleide.sdk
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonElement
 import java.io.InputStream
 
 interface Manifest {

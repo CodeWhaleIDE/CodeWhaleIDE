@@ -1,6 +1,12 @@
 {
   "actions": [
     {
+      "id": "action.all.actions",
+      "className": "com.bluewhaleyt.codewhaleide.app.action.AllActionsAction",
+      "label": "All Actions",
+      "description": "All actions available for the IDE"
+    },
+    {
       "id": "action.request.all.files.access",
       "className": "com.bluewhaleyt.codewhaleide.app.action.RequestAllFilesAccessAction",
       "label": "Request All Files Access",
