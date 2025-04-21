@@ -1,16 +1,15 @@
 {
   "actions": [
     {
-      "id": "action.java.test",
-      "className": "com.bluewhaleyt.codewhaleide.app.action.JavaTestAction",
-      "label": "Java Test",
-      "description": "A test action written in Java"
+      "id": "action.request.all.files.access",
+      "className": "com.bluewhaleyt.codewhaleide.app.action.RequestAllFilesAccessAction",
+      "label": "Request All Files Access",
+      "description": "Request All Files Access to manage the files for the editor"
     },
     {
-      "id": "action.kotlin.test",
-      "className": "com.bluewhaleyt.codewhaleide.app.action.KotlinTestAction",
-      "label": "Kotlin Test",
-      "description": "A test action written in Kotlin"
+      "id": "action.test",
+      "className": "com.bluewhaleyt.codewhaleide.app.action.TestAction",
+      "label": "Test"
     }
   ]
 }

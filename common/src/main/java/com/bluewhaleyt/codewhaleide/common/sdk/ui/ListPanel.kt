@@ -74,7 +74,7 @@ fun <T : ListPanelItem> ListPanel(
                     },
                     onDone = { listener.onConfirm(panel, value, selectedIndex, items[selectedIndex]) },
                     placeholder = options.placeholder?.let { { Text(it) } },
-                    showDone = value.isNotBlank() && items.isNotEmpty()
+                    showDone = items.isNotEmpty()
                 )
             }
             LazyColumn {

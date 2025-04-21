@@ -35,8 +35,7 @@ internal fun <T : Panel> Panel(
                 dismissOnBackPress = options.dismissOnBackPress,
                 dismissOnClickOutside = options.dismissOnClickOutside
             ),
-            title = options.title?.let { { Text(it) } },
-            prompt = options.prompt?.let { { Text(it) } }
+            title = options.title?.let { { Text(it) } }
         ) {
             content()
         }

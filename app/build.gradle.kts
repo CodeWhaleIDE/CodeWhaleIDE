@@ -31,6 +31,10 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
+    compileOptions {
+        isCoreLibraryDesugaringEnabled = true
+    }
 }
 
 dependencies {
@@ -40,6 +44,10 @@ dependencies {
     testImplementation(libs.bundles.androidxTest)
     androidTestImplementation(libs.bundles.androidxTest)
     coreLibraryDesugaring(libs.androidDesugarJdkLibs)
+
+    implementation(platform("io.github.Rosemoe.sora-editor:bom:0.23.5"))
+    implementation("io.github.Rosemoe.sora-editor:editor")
+    implementation("io.github.Rosemoe.sora-editor:language-textmate")
 
     implementation(project(":common"))
     implementation(project(":sdk"))

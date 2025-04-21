@@ -1,8 +1,5 @@
 package com.bluewhaleyt.codewhaleide.app.sdk
 
-import android.content.Context
-import android.view.View
-import androidx.compose.material3.ColorScheme
 import com.bluewhaleyt.codewhaleide.common.sdk.ui.InputPanel
 import com.bluewhaleyt.codewhaleide.common.sdk.ui.ListPanel
 import com.bluewhaleyt.codewhaleide.common.sdk.ui.createPanel
@@ -16,14 +13,16 @@ import com.bluewhaleyt.codewhaleide.sdk.ui.panel.list.ListPanelListener
 import com.bluewhaleyt.codewhaleide.sdk.ui.panel.list.ListPanelOptions
 
 class DefaultPluginContext(
-    private val context: Context,
-    private val view: View,
-    private val colorScheme: ColorScheme
-) : PluginContext(context) {
+    override val data: Data
+) : PluginContext(data) {
+
+    override fun getWorkspace() = data.workspace
+
+    override fun getEditor() = data.editor
 
     override fun createInputPanel(): InputPanel {
         val panel = InputPanel()
-        createPanel(panel, view, colorScheme) {
+        createPanel(panel, data.view, data.colorScheme) {
             InputPanel(panel)
         }
         return panel
@@ -31,7 +30,7 @@ class DefaultPluginContext(
 
     override fun <T : ListPanelItem> createListPanel(): ListPanel<T> {
         val panel = ListPanel<T>()
-        createPanel(panel, view, colorScheme) {
+        createPanel(panel, data.view, data.colorScheme) {
             ListPanel(panel)
         }
         return panel

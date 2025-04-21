@@ -114,7 +114,11 @@ internal fun InputPanelInput(
         minLines = 1,
         singleLine = true,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
-        keyboardActions = KeyboardActions(onDone = { onDone() }),
+        keyboardActions = KeyboardActions(
+            onDone = {
+                if (showDone) onDone()
+            }
+        ),
         decorationBox = { innerTextField ->
             Row(
                 verticalAlignment = Alignment.CenterVertically,
