@@ -11,7 +11,44 @@ plugins {
     alias(libs.plugins.kotlinAndroid) apply false
 }
 
-private fun BaseExtension.configureBaseExtension() {
+subprojects {
+    plugins.withId("com.android.application") {
+        extensions.findByType<AppExtension>()?.run {
+            configureAndroid()
+            tasks.withType<KotlinCompile>().configureEach {
+                compilerOptions {
+                    jvmTarget.set(JvmTarget.JVM_17)
+                }
+            }
+        }
+    }
+    plugins.withId("com.android.library") {
+        extensions.findByType<LibraryExtension>()?.run {
+            configureAndroid()
+            buildTypes {
+                release {
+                    isMinifyEnabled = false
+                    proguardFiles(
+                        getDefaultProguardFile("proguard-android-optimize.txt"),
+                        "proguard-rules.pro"
+                    )
+                }
+            }
+            tasks.withType<KotlinCompile>().configureEach {
+                compilerOptions {
+                    jvmTarget.set(JvmTarget.JVM_17)
+                }
+            }
+        }
+    }
+    plugins.withId("org.jetbrains.kotlin.plugin.compose") {
+        extensions.findByType<BaseExtension>()?.run {
+            buildFeatures.compose = true
+        }
+    }
+}
+
+private fun BaseExtension.configureAndroid() {
     compileSdkVersion(libs.versions.compileSdk.get().toInt())
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
@@ -23,47 +60,5 @@ private fun BaseExtension.configureBaseExtension() {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-}
 
-fun Project.configureAppExtension() {
-    extensions.findByType<AppExtension>()?.run {
-        configureBaseExtension()
-    }
-    tasks.withType<KotlinCompile>().configureEach {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
-        }
-    }
-}
-
-fun Project.configureLibraryExtension() {
-    extensions.findByType<LibraryExtension>()?.run {
-        configureBaseExtension()
-        buildTypes {
-            release {
-                isMinifyEnabled = false
-                proguardFiles(
-                    getDefaultProguardFile("proguard-android-optimize.txt"),
-                    "proguard-rules.pro"
-                )
-            }
-        }
-    }
-    tasks.withType<KotlinCompile>().configureEach {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
-        }
-    }
-}
-
-fun Project.configureCompose() {
-    extensions.findByType<BaseExtension>()?.run {
-        buildFeatures.compose = true
-    }
-}
-
-subprojects {
-    plugins.withId("com.android.application") { configureAppExtension() }
-    plugins.withId("com.android.library") { configureLibraryExtension() }
-    plugins.withId("org.jetbrains.kotlin.plugin.compose") { configureCompose() }
 }

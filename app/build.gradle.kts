@@ -31,12 +31,18 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
+    compileOptions {
+        isCoreLibraryDesugaringEnabled = true
+    }
 }
 
 dependencies {
-    implementation(libs.bundles.kotlin)
-    implementation(libs.bundles.androidx)
-    implementation(libs.bundles.compose)
     testImplementation(libs.bundles.androidxTest)
     androidTestImplementation(libs.bundles.androidxTest)
+    coreLibraryDesugaring(libs.androidDesugarJdkLibs)
+
+    implementation(project(":core"))
+    implementation(project(":common"))
+    implementation(project(":feature:editor"))
 }

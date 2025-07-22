@@ -24,6 +24,6 @@ dependencyResolutionManagement {
 rootProject.name = "CodeWhaleIDE"
 
 include(":app")
+include(":core")
 include(":common")
-include(":sdk")
 include(":feature:editor")
