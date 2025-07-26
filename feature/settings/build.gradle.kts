@@ -6,11 +6,9 @@ plugins {
 }
 
 android {
-    namespace = "com.bluewhaleyt.codewhaleide.core"
+    namespace = "com.bluewhaleyt.codewhaleide.feature.treeview"
 }
 
 dependencies {
     implementation(project(":common"))
-    implementation(project(":feature:settings"))
-    implementation(project(":feature:editor"))
 }

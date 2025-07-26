@@ -19,5 +19,5 @@ dependencies {
     api(libs.soraEditorLanguageTextMate)
 
     implementation(project(":common"))
-    implementation(project(":core"))
+    implementation(project(":feature:settings"))
 }

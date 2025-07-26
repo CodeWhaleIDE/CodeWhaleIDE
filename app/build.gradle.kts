@@ -44,5 +44,6 @@ dependencies {
 
     implementation(project(":core"))
     implementation(project(":common"))
+    implementation(project(":feature:settings"))
     implementation(project(":feature:editor"))
 }
