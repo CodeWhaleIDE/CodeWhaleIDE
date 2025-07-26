@@ -13,6 +13,9 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import com.bluewhaleyt.codewhaleide.common.ui.Codicon
 import com.bluewhaleyt.codewhaleide.core.activity.CoreActivity
 import com.bluewhaleyt.codewhaleide.feature.settings.LocalSettingsManager
 import com.bluewhaleyt.codewhaleide.feature.settings.SettingKeys
@@ -41,6 +44,13 @@ class MainActivity : CoreActivity() {
                     Text(settingsManager.jsonString)
                     Text(settingsManager.defaultJsonString)
 
+                    Codicon("file")
+                    Codicon("symbol-function")
+                    Codicon("symbol-event")
+                    Codicon("symbol-variable")
+                    Codicon("symbol-variable", tint = Color.Red)
+                    Codicon("folder")
+                    Codicon("folder-opened")
                 }
             }
         }
